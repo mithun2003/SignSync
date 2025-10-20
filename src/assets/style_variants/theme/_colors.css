@@ -1,0 +1,47 @@
+@theme {
+  --color-white: #f4f5f5;
+
+  /* Neutral Colors */
+  --color-neutral-black: #263238;
+  --color-neutral-d-grey: #4d4d4d;
+  --color-neutral-grey: #717171;
+  --color-neutral-l-grey: #89939e;
+  --color-neutral-grey-blue: #abbed1;
+  --color-neutral-silver: #f5f7fa;
+  --color-neutral-white: #ffffff;
+
+  /* Backgrounds & Semantic */
+  --color-bg-primary: #040c18;
+  --color-bg-secondary: #263238;
+
+  /* Font Primary */
+  --color-font-primary: #81afdd;
+  --color-info: #2194f3;
+
+  /* Success Green Shades & Tints */
+  --color-success-shade-3: #237d31;
+  --color-success-shade-4: #1b5e1f;
+  --color-success-shade-5: #103e13;
+  --color-success-tint-1: #66bb69;
+  --color-success-tint-2: #81c784;
+  --color-success-tint-3: #a5d6a7;
+  --color-success-tint-4: #c8e6c9;
+  --color-success-tint-5: #e8f5e9;
+
+  /* Accents */
+  --color-red-primary: #f07458;
+  --color-red-secondary: #e53835;
+  --color-violet-primary: #760ed1;
+  --color-violet-secondary: #5a05a4;
+
+  --color-border-color: #eaf1e8;
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-secondary;
+  }
+  .gradient-bg {
+    @apply bg-gradient-to-r from-purple-400 via-pink-500 to-red-secondary;
+  }
+}

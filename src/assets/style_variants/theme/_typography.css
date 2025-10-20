@@ -1,0 +1,127 @@
+
+@theme{
+/* Typography Scale */
+--font-roboto: 'Roboto', sans-serif;
+--font-karla: 'Karla', sans-serif;
+--font-manrope: 'Manrope', sans-serif;
+--text-headline-1: 64px;
+--text-headline-2: 36px;
+--text-headline-3: 28px;
+--text-headline-4: 20px;
+--text-body-1: 18px;
+--text-body-2: 16px;
+--text-body-3: 14px;
+--text-body-4: 12px;
+
+/* Optional: Font weights as vars */
+--font-regular: 400;
+--font-medium: 500;
+--font-semibold: 600;
+}
+
+@layer utilities {
+  /* Headline Styles */
+  .headline-1 {
+    font-size: var(--text-headline-1);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-manrope);
+    line-height: 1.2;
+    letter-spacing: 1px;
+  }
+
+  .headline-2 {
+    font-size: var(--text-headline-2);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-manrope);
+    line-height: 1.2;
+  }
+  .headline-3 {
+    font-size: var(--text-headline-3);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-manrope);
+    line-height: 1.2;
+  }
+
+  /* Body Text */
+  .body-1 {
+    font-size: var(--text-body-1);
+    font-weight: var(--font-regular);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+  }
+
+  .body-1-semibold {
+    font-size: var(--text-body-1);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+  }
+
+  .body-2 {
+    font-size: var(--text-body-2);
+    font-weight: var(--font-regular);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+    word-spacing: 0.19rem;
+  }
+  
+  .body-2-medium {
+    font-size: var(--text-body-2);
+    font-weight: var(--font-medium);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+  }
+  
+  .body-2-semibold {
+    font-size: var(--text-body-2);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+  }
+  
+  .body-3 {
+    font-size: var(--text-body-3);
+    font-weight: var(--font-regular);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+    word-spacing: 0.13rem;
+  }
+
+  .body-3-medium {
+    font-size: var(--text-body-3);
+    font-weight: var(--font-medium);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+  }
+
+  .body-3-semibold {
+    font-size: var(--text-body-3);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+  }
+  
+  .body-4 {
+    font-size: var(--text-body-4);
+    font-weight: var(--font-regular);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+    word-spacing: 0.13rem;
+  }
+
+  .body-4-medium {
+    font-size: var(--text-body-4);
+    font-weight: var(--font-medium);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+  }
+
+  .body-4-semibold {
+    font-size: var(--text-body-4);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-manrope);
+    line-height: 1.6;
+  }
+
+  /* Add more if needed */
+}
