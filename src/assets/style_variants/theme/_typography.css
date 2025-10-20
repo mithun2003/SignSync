@@ -20,6 +20,9 @@
 }
 
 @layer utilities {
+  /* .body-1{
+   @apply text-body-1 fw-semibold lh-base; 
+  } */
   /* Headline Styles */
   .headline-1 {
     font-size: var(--text-headline-1);
@@ -84,6 +87,7 @@
     font-weight: var(--font-regular);
     font-family: var(--font-manrope);
     line-height: 1.6;
+    letter-spacing: 1px;
     word-spacing: 0.13rem;
   }
 

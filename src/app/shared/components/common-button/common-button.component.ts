@@ -39,6 +39,7 @@ export class CommonButtonComponent {
   disabled = input<boolean>(false); // Boolean value to determine whether to display the icon on the button.
   disabledButtonClass = input<string>(''); // Input for button when it is disabled
   loaderSize = input<string>('base'); // it represents the font size of loader
+  hover = input<boolean>(true); // it represents the font size of loader
 
   showBadge = input<boolean | undefined>(false);
   badgeColor = input<ThemePalette>('warn');
