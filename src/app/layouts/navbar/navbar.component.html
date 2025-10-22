@@ -1,54 +1,58 @@
 <div class="flex justify-center py-4 fixed w-full z-1">
-<div class="toolbar w-3/4 px-4 py-3 md:px-6 h-16 flex justify-between items-center bg-white/20 rounded-4xl shadow-nav-bar border-white backdrop-blur-md">
-  <!-- Logo -->
-  <a routerLink="/home" class="flex items-center">
-    <img ngSrc="images/icon.png" width="40" height="10" alt="SignSync Logo" class="logo" />
-    <span class="ml-1 font-bold text-white text-lg">SignSync</span>
-  </a>
-
-  <!-- Spacer -->
-  <!-- <div class="flex-grow"></div> -->
-
-  <!-- Desktop Nav (hidden on mobile) -->
-  <div class="hidden lg:flex items-center space-x-1 justify-evenly w-3/4">
-    @for (link of navLinks; track link.routerLink) {
-    <a
-      [routerLink]="link.routerLink"
-      routerLinkActive="active"
-      class="nav-link text-white">
-      {{ link.title }}
+  <div
+    class="toolbar w-3/4 px-4 py-3 md:px-6 h-16 flex justify-between items-center bg-white/20 rounded-4xl shadow-nav-bar border-white backdrop-blur-md">
+    <!-- Logo -->
+    <a routerLink="/home" class="flex items-center">
+      <img ngSrc="images/icon.png" width="40" height="10" alt="SignSync Logo"
+        class="logo" />
+      <span class="ml-1 font-bold text-white text-lg">SignSync</span>
     </a>
-    }
-  </div>
 
-  <!-- Desktop Login Button -->
-  <!-- <button
+    <!-- Spacer -->
+    <!-- <div class="flex-grow"></div> -->
+
+    <!-- Desktop Nav (hidden on mobile) -->
+    <div class="hidden lg:flex items-center space-x-1 justify-evenly w-3/4">
+      @for (link of navLinks; track link.routerLink) {
+      <a
+        [routerLink]="link.routerLink"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="[&_div]:w-full"
+        class="nav-link text-white group p-2 px-4">
+        {{ link.title }}
+        <div
+          class="bg-white h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-in-out"></div>
+      </a>
+      }
+    </div>
+
+    <!-- Desktop Login Button -->
+    <!-- <button
     routerLink="/auth/signin"
     mat-flat-button
     class="login-btn ml-4 hidden md:block">
     Login
   </button> -->
-  <!-- <button class="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded p-[0.1rem]">
+    <!-- <button class="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded p-[0.1rem]">
   <span class="flex w-full bg-gray-900 text-white rounded py-3 px-12">
   Gradient 
      </span>
 </button> -->
 
-  <app-common-button
-  text="Login"
-  buttonClass="common-login-button body-3-medium"
-  routerLink="/auth/signin"
-  ></app-common-button>
+    <app-common-button
+      text="Login"
+      buttonClass="common-login-button body-3-medium"
+      routerLink="/auth/signin"></app-common-button>
 
-  <!-- Mobile Menu Button -->
-  <button
-    mat-icon-button
-    (click)="toggleSidenav()"
-    class="!hidden"
-    aria-label="Toggle menu">
-    <mat-icon>menu</mat-icon>
-  </button>
-</div>
+    <!-- Mobile Menu Button -->
+    <button
+      mat-icon-button
+      (click)="toggleSidenav()"
+      class="!hidden"
+      aria-label="Toggle menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
 </div>
 
 <!-- Mobile Sidenav -->

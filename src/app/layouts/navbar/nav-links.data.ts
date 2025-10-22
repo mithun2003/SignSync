@@ -14,8 +14,8 @@ export interface INavItem  {
 }
 
 export const NAV_LINKS: INavItem[] = [
-  { title: 'Home', routerLink: '/home' },
-  { title: 'Detect', routerLink: '/detect' },
+  { title: 'Home', routerLink: '/' },
+  { title: 'Detect', routerLink: '/gesture-detection' },
   { title: 'Translate', routerLink: '/translate' },
   { title: 'Dashboard', routerLink: '/dashboard' }
 ];

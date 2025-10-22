@@ -10,7 +10,8 @@ export const routes: Routes = [
         path: '',
         component: MainLayoutComponent,
         children: [
-            { path: '', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) }
+            { path: '', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
+            { path: 'gesture-detection', loadComponent: () => import('./gesture-detection/gesture-detection.component').then(m => m.GestureDetectionComponent) },
         ]
     },
     {
