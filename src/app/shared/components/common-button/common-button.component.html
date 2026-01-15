@@ -17,22 +17,28 @@
          disabled:cursor-not-allowed
          {{
           buttonType() === 'outline'
-          ? 'outline hover:shadow-xl ' + outlineTheme
-          : buttonClass() + ' ' + resolvedBgClass
-          }}"
+          ? 'hover:shadow-xl ' + outlineTheme
+          : resolvedBgClass
+          }} {{buttonClass()}}"
   [disabled]="isLoading() || disabled()"
   (click)="buttonClick($event)"
   [type]="isSubmitButton() ? 'submit' : 'button'"
   [ngClass]="disabled() ? disabledButtonClass() : ''"
   [matTooltip]="toolTipMsg() ?? ''">
 
-  @if(hover() && !disabled() && !isLoading()) {
-  <span class="hover-effect {{ resolvedHoverClass }}"></span>
+  @if (hover() && !disabled() && !isLoading()) {
+  <span
+    class="hover-effect {{
+      buttonType() === 'outline'
+        ? resolvedOutlineHoverClass
+        : resolvedHoverClass
+    }}">
+  </span>
   }
 
   <span
     class="relative z-10 inline-flex items-center gap-2
-           {{ resolvedTextClass }} {{ textClass() }}">
+           {{ resolvedFinalTextClass }} {{ textClass() }}">
     @if (prefix() && isIcon()) {
     @if (showBadge()) {
     <span

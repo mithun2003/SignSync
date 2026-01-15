@@ -76,12 +76,12 @@ export class GestureDetectionComponent implements OnDestroy {
     }
   });
   // constructor() {
-  //   effect(() => {
-  //     const res = this.userService.predictionResult();
-  //     if (res) {
-  //       this.isProcessingBackend = false;
-  //     }
-  //   });
+  getProcess = effect(() => {
+    const res = this.userService.predictionResult();
+    if (res) {
+      this.isProcessingBackend = false;
+    }
+  });
   // }
 
   // async ngOnInit() {

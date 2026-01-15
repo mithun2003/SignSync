@@ -33,7 +33,7 @@
   }
 
   .common-button {
-    @apply flex h-9 items-center justify-center gap-2 overflow-hidden rounded-md border border-border-primary bg-white px-12 py-3 text-center text-sm text-black font-bold transition-all duration-200 disabled:opacity-70;
+    @apply flex h-9 items-center justify-center gap-2 overflow-hidden rounded-md px-4 sm:px-6 py-2 text-center text-sm font-bold transition-all duration-200 disabled:opacity-70;
   }
   .common-button:hover:not(:disabled) {
     @apply shadow-common-button-shadow;
@@ -47,6 +47,6 @@
   }
 
   .hover-effect {
-    @apply absolute w-0 h-0 transition-all duration-500 ease-out  rounded-full group-hover:w-56 group-hover:h-56;
+    @apply absolute w-0 h-0 transition-all duration-500 ease-out  rounded-full group-hover:w-60 group-hover:h-60;
   }
 }

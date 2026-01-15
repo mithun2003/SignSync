@@ -26,7 +26,7 @@ export type TCommonButtonAnimationValues = 'animation-arrow-icon' | false;
 export class CommonButtonComponent {
   isSubmitButton = input<boolean>(false);
   buttonType = input<'filled' | 'outline'>('filled');
-  buttonClass = input<string>('text-white'); // Input for custom button class
+  buttonClass = input<string>(''); // Input for custom button class
   text = input<string | number | undefined>(); //  Text to be displayed on the button
   textClass = input<string>(''); // it represents the style for text
 
@@ -53,7 +53,7 @@ export class CommonButtonComponent {
   badgeColor = input<ThemePalette>('warn');
   badgeSize = input<MatBadgeSize>('small');
   badgeValue = input<string | number>(0);
-  outlineColor = input<string>('white');
+  // outlineColor = input<string>('white');
   toolTipMsg = input<string | undefined>();
 
   clickEmit = output<Event>();
@@ -105,19 +105,37 @@ export class CommonButtonComponent {
     return 'bg-violet-secondary';
   }
 
-  get outlineTheme(): string {
-    if (this.outlineColor() === 'white') {
-      return `${this.buttonClass()} text-white outline-border-primary`;
-    }
-    if (this.outlineColor() === 'black') {
-      return `${this.buttonClass()}`;
-    }
-    if (this.outlineColor() === 'red') {
-      return `${this.buttonClass()} text-common-red-color outline-common-red-color`;
-    }
-    if (this.outlineColor() === 'tertiary-red') {
-      return `${this.buttonClass()} text-tertiary-red-color outline-tertiary-red-color`;
-    }
-    return this.buttonClass();
+  get resolvedOutlineTextClass(): string {
+    if (this.textColor()) return this.textColor();
+
+    const theme = COLOR_THEME_MAP[this.color()];
+    return theme?.outlineText ?? 'text-white';
   }
+
+  get resolvedOutlineBorderClass(): string {
+    const theme = COLOR_THEME_MAP[this.color()];
+    return theme?.outlineBorder ?? 'border-border-primary';
+  }
+
+  get resolvedOutlineHoverClass(): string {
+    if (this.hoverColor()) return this.hoverColor();
+
+    const theme = COLOR_THEME_MAP[this.color()];
+    return theme?.outlineHoverBg ?? 'bg-white/10';
+  }
+
+  get outlineTheme(): string {
+    return `
+    bg-transparent
+    border
+    ${this.resolvedOutlineBorderClass}
+  `;
+  }
+
+  get resolvedFinalTextClass(): string {
+  return this.buttonType() === 'outline'
+    ? this.resolvedOutlineTextClass
+    : this.resolvedTextClass;
+}
+
 }

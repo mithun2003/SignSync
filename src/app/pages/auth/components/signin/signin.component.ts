@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { CommonService } from '@core/services/common/common.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import { AuthService } from '@pages/auth/service/auth.service';
 // import { AuthService } from '@core/services/auth.service';
@@ -22,6 +23,7 @@ export class SigninComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private localStorageService = inject(LocalStorageService);
+  private commonService = inject(CommonService);
 
   form: FormGroup;
   loading = signal<boolean>(false);
@@ -77,8 +79,9 @@ export class SigninComponent {
         } else {
           this.router.navigateByUrl('/');
         }
-        this.localStorageService.setItem('accessToken', res.data.access_token)
-        this.localStorageService.setItem('userRole', user_role)
+        this.localStorageService.setItem('accessToken', res.data.access_token);
+        this.localStorageService.setItem('userRole', user_role);
+        this.commonService.getSession();
       },
       error: (err) => {
         this.loading.set(false);

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -28,7 +28,7 @@ interface SystemService {
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   // Dashboard statistics
   stats = signal<DashboardStats>({

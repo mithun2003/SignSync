@@ -48,6 +48,7 @@
         </label>
       </button>
     </div>
+
     <div
       #linksDiv
       id="navigation"
@@ -79,13 +80,7 @@
           class="bg-white h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-in-out"></div>
       </a>
       }
-      <!-- <ng-content></ng-content> -->
-      <!-- <div>
-        <app-common-button
-          text="Login"
-          buttonClass="common-login-button body-3-medium"
-          routerLink="/auth/signin"></app-common-button>
-      </div> -->
+
       <div class="flex items-center gap-4">
         @if(commonService.loading()) {
         <div
@@ -101,7 +96,7 @@
         <!-- User Menu -->
         <div>
           <button (click)="toggleUserMenu()"
-            class="relative group overflow-hidden flex items-center justify-center gap-3 p-2 rounded-lg border border-border-primary transition-colors user-menu-button"
+            class="relative group overflow-hidden flex items-center justify-center gap-3 p-2 rounded-lg border border-border-primary transition-colors user-menu-button cursor-pointer"
             aria-label="User menu">
             <!-- <div class="w-8 h-8 bg-linear-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
           <span class="text-sm font-medium text-white">{{ getUserInitials() }}</span>

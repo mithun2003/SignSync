@@ -8,8 +8,8 @@ describe('AlertComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AlertComponent]
-    }).compileComponents();
+    imports: [AlertComponent]
+}).compileComponents();
   });
 
   beforeEach(() => {

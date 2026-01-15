@@ -7,23 +7,25 @@ import {
   ElementRef,
   Renderer2,
   PLATFORM_ID,
-  Inject,
   AfterViewInit,
   OnDestroy,
+  ChangeDetectionStrategy,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+
 import { isPlatformBrowser } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AlertService } from 'app/shared/alert/service/alert.service';
-import { faRightFromBracket } from '@fortawesome/pro-solid-svg-icons';
 
 import { CommonService } from '@core/services/common/common.service';
 import { IUserData } from '@models/global.model';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-admin-header',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule],
+  standalone: true,
   templateUrl: './admin-header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminHeaderComponent implements AfterViewInit, OnDestroy {
   private commonService = inject(CommonService);
@@ -35,13 +37,10 @@ export class AdminHeaderComponent implements AfterViewInit, OnDestroy {
   searchQuery = signal('');
   showUserMenu = signal(false);
   private documentClickListener: (() => void) | null = null;
-
-  constructor(
-    private router: Router,
-    private elRef: ElementRef,
-    private renderer: Renderer2,
-    @Inject(PLATFORM_ID) private platformId: object,
-  ) {}
+  private router = inject(Router);
+  private elRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private platformId = inject(PLATFORM_ID);
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -126,26 +125,29 @@ export class AdminHeaderComponent implements AfterViewInit, OnDestroy {
     this.showUserMenu.update((show) => !show);
   }
 
-  // Sign out functionality
-  signOut(): void {
-    // TODO: Implement sign out logic
-    console.log('Sign out');
-    this.subscriptions.push(
-      this.alertService
-        .alertMessage('confirm', {
-          title: 'Confirm Logout',
-          content: 'Are you sure you want to logout?',
-          doneMsg: 'Logout',
-          cancelMsg: 'Cancel',
-          icon: faRightFromBracket,
-          iconBgColor: 'red',
-          iconClass: 'text-common-primary-red-color',
-        })
-        .afterClosed()
-        .subscribe((res) => {
-          if (res) this.commonService.signOut();
-        }),
-    );
+  // // Sign out functionality
+  // signOut(): void {
+  //   // TODO: Implement sign out logic
+  //   console.log('Sign out');
+  //   this.subscriptions.push(
+  //     this.alertService
+  //       .alertMessage('confirm', {
+  //         title: 'Confirm Logout',
+  //         content: 'Are you sure you want to logout?',
+  //         doneMsg: 'Logout',
+  //         cancelMsg: 'Cancel',
+  //         icon: faRightFromBracket,
+  //         iconBgColor: 'red',
+  //         iconClass: 'text-common-primary-red-color',
+  //       })
+  //       .afterClosed()
+  //       .subscribe((res) => {
+  //         if (res) this.commonService.signOut();
+  //       }),
+  //   );
+  // }
+  signOut(){
+    this.commonService.signOut();
   }
 
   // Mock user data (replace with actual user service)

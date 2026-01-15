@@ -15,15 +15,15 @@ import { CommonButtonComponent } from 'app/shared/components/common-button/commo
 import { CommonService } from '@core/services/common/common.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSpinner } from '@fortawesome/pro-regular-svg-icons';
+import { AlertService } from 'app/shared/alert/service/alert.service';
 
 @Component({
   selector: 'app-navbar',
   imports: [
     RouterModule,
-
     NgOptimizedImage,
     CommonButtonComponent,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
@@ -32,10 +32,11 @@ import { faSpinner } from '@fortawesome/pro-regular-svg-icons';
 })
 export class NavbarComponent {
   protected readonly navLinks: INavItem[] = NAV_LINKS;
-  readonly toggleCheckbox =
-    viewChild.required<ElementRef<HTMLInputElement>>('toggleCheckbox');
-showUserMenu = signal<boolean>(false);
+  readonly toggleCheckbox = viewChild.required<ElementRef<HTMLInputElement>>('toggleCheckbox');
+  showUserMenu = signal<boolean>(false);
+
   commonService = inject(CommonService);
+  alertService = inject(AlertService);
 
   faSpinner = faSpinner;
 
@@ -64,12 +65,13 @@ showUserMenu = signal<boolean>(false);
     }
   }
 
-    // Toggle user menu dropdown
+  // Toggle user menu dropdown
   toggleUserMenu(): void {
     this.showUserMenu.update((show: boolean) => !show);
   }
 
   logout() {
-    this.commonService.signOut();
+
+    this.commonService.logout();
   }
 }

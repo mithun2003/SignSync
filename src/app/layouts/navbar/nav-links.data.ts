@@ -1,10 +1,6 @@
-import {
-  faCircleUser,
-  faRightFromBracket
-} from '@fortawesome/pro-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
-export interface INavItem  {
+export interface INavItem {
   id?: string;
   title: string;
   icon?: IconDefinition;
@@ -17,5 +13,5 @@ export const NAV_LINKS: INavItem[] = [
   { title: 'Home', routerLink: '/' },
   { title: 'Detect', routerLink: '/gesture-detection' },
   { title: 'Translate', routerLink: '/translate' },
-  { title: 'Dashboard', routerLink: '/dashboard' }
+  // { title: 'Dashboard', routerLink: '/dashboard' }
 ];

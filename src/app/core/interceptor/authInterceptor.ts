@@ -9,10 +9,13 @@ import { ApiService } from '@core/services/api/api.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 
+const AUTH_EXCLUDED_URLS = ['/auth/login', '/auth/signup', '/auth/refresh'];
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private localStorageService = inject(LocalStorageService);
   private apiService = inject(ApiService);
+
   /**
    * Intercept HTTP requests and add authorization token if available.
    *
@@ -22,9 +25,12 @@ export class AuthInterceptor implements HttpInterceptor {
    */
   intercept(
     req: HttpRequest<unknown>,
-    next: HttpHandler
-  ): Observable<HttpEvent<unknown>>{
+    next: HttpHandler,
+  ): Observable<HttpEvent<unknown>> {
     const token = this.localStorageService.getItem('accessToken');
+    const isAuthExcluded = AUTH_EXCLUDED_URLS.some((url) =>
+      req.url.includes(url),
+    );
 
     let authReq = req;
     if (token) {
@@ -37,28 +43,34 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((err) => {
-        if (err.status === 401) {
-          return this.apiService
-            .post<{
-              access_token: string;
-              token_type: string;
-            }>('auth/refresh', {})
-            .pipe(
-              switchMap((res) => {
-                this.localStorageService.setItem(
-                  'accessToken',
-                  res?.access_token,
-                );
-                const retryReq = req.clone({
-                  setHeaders: {
-                    Authorization: `Bearer ${res.access_token}`,
-                  },
-                });
-                return next.handle(retryReq);
-              }),
-            );
+        if (err.status !== 401 || isAuthExcluded || !token) {
+          return throwError(() => err);
         }
-        return throwError(() => err);
+
+        return this.apiService
+          .post<{
+            access_token: string;
+            token_type: string;
+          }>('auth/refresh', {})
+          .pipe(
+            switchMap((res) => {
+              this.localStorageService.setItem(
+                'accessToken',
+                res?.access_token,
+              );
+              const retryReq = req.clone({
+                setHeaders: {
+                  Authorization: `Bearer ${res.access_token}`,
+                },
+              });
+              return next.handle(retryReq);
+            }),
+            catchError((refreshErr) => {
+              // 🔥 Refresh failed → force logout
+              this.localStorageService.clearLocalStorage();
+              return throwError(() => refreshErr);
+            }),
+          );
       }),
     );
   }

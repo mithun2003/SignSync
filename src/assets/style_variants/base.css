@@ -53,6 +53,7 @@
   ========================================================= */
   --color-red-primary: var(--color-red-primary);
   --color-red-secondary: var(--color-red-secondary);
+  --color-red-bg: var(--color-red-bg);
   --color-danger: var(--color-red-primary);
 
   /* =========================================================

@@ -1,0 +1,42 @@
+.route-container {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.route-view {
+  position: absolute;
+  inset: 0;
+}
+
+/* ENTER */
+.route-enter {
+  animation: routeEnter 350ms ease-out forwards;
+}
+
+/* LEAVE */
+.route-leave {
+  animation: routeLeave 200ms ease-in forwards;
+}
+
+@keyframes routeEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes routeLeave {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}

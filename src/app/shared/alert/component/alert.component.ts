@@ -69,18 +69,16 @@ export class AlertComponent implements OnInit {
   }
 
   private getColor(colorName: IconBgColor, type: 'bg' | 'inner'): string {
-    const colors: {
-      [key in IconBgColor]: {
+    const colors: Record<IconBgColor, {
         bg: string;
         inner: string;
-      };
-    } = {
+      }> = {
       green: {
         bg: 'bg-common-green-bg-color',
         inner: 'bg-common-green-secondary-bg-color'
       },
       red: {
-        bg: 'bg-common-red-bg-color',
+        bg: 'bg-red-bg',
         inner: 'bg-common-red-secondary-bg-color'
       },
       blue: {
