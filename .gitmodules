@@ -1,0 +1,6 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/mithun2003/SignSync-FE.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/mithun2003/SIgnSync-BE.git
