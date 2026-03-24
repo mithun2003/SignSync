@@ -1,6 +1,8 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/mithun2003/SignSync-FE.git
+	branch = new-model
 [submodule "backend"]
 	path = backend
 	url = https://github.com/mithun2003/SIgnSync-BE.git
+	branch = new-model

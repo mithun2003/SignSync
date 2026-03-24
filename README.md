@@ -5,7 +5,7 @@ SignSync is organized as one root repository that references two independent rep
 - `frontend` (Angular app): <https://github.com/mithun2003/SignSync-FE.git>
 - `backend` (FastAPI app): <https://github.com/mithun2003/SIgnSync-BE.git>
 
-The root repository tracks those two directories as gitlinks (submodule-style pointers), so FE and BE stay fully separate.
+The root repository tracks those two directories as submodules and is configured to follow the `new-model` branch for both FE and BE, so they stay fully separate.
 
 ## Repository Structure
 
@@ -22,14 +22,17 @@ SignSync/
 
 If you commit and push inside `frontend` or `backend`, that update is pushed to that repo only.
 
-To reflect those new FE/BE commits in this root repo, do one extra root commit:
+To sync FE/BE from their tracked branch (`new-model`) into this root repo:
 
 ```bash
 cd /path/to/SignSync
-git add frontend backend
-git commit -m "chore: bump frontend/backend pointers"
+git submodule update --remote frontend backend
+git add .gitmodules frontend backend
+git commit -m "chore: track frontend/backend new-model branches"
 git push origin main
 ```
+
+To pin FE/BE to specific checked-out states after branch updates, keep using the same root commit flow (`git add frontend backend` + `git commit`).
 
 ## Push-only workflow (no pull)
 
