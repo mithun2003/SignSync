@@ -34,6 +34,42 @@ git push origin main
 
 To pin FE/BE to specific checked-out states after branch updates, keep using the same root commit flow (`git add frontend backend` + `git commit`).
 
+## Run FE + BE together with Docker
+
+From the root repository, you can run frontend (Angular), backend (FastAPI), PostgreSQL, and pgAdmin in one command.
+
+Prerequisites:
+
+- Docker and Docker Compose plugin installed
+- `backend/src/.env` exists (backend already uses this file)
+
+Start everything:
+
+```bash
+cd /path/to/SignSync
+docker compose up --build
+```
+
+Services:
+
+- Frontend: <http://localhost:4200>
+- Backend API: <http://localhost:8000>
+- Backend docs: <http://localhost:8000/docs>
+- pgAdmin: <http://localhost:5050>
+
+Bootstrap admin/tier from root (optional):
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.tools.yml run --rm create_superuser
+docker compose -f docker-compose.yml -f docker-compose.tools.yml run --rm create_first_tier
+```
+
+Stop everything:
+
+```bash
+docker compose down
+```
+
 ## Push-only workflow (no pull)
 
 If remote has unwanted files and you want your local state to overwrite it:

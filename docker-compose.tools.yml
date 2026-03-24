@@ -1,0 +1,34 @@
+services:
+  create_superuser:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/src/.env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python -m src.scripts.create_first_superuser
+    volumes:
+      - ./backend/src:/app/src
+    environment:
+      PYTHONPATH: /app/src
+    profiles:
+      - tools
+
+  create_first_tier:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/src/.env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python -m src.scripts.create_first_tier
+    volumes:
+      - ./backend/src:/app/src
+    environment:
+      PYTHONPATH: /app/src
+    profiles:
+      - tools
