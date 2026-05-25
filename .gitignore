@@ -1,0 +1,39 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temp/cache
+tmp/
+temp/
+.cache/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Docker
+docker-data/
+*.pid
+
+# Build outputs in root (if any)
+dist/
+build/
+coverage/
+
+# Terraform / deployment (optional)
+.terraform/
+
+# Ignore nested repo internals
+frontend/.git
+backend/.git
+
+# Optional local Docker overrides
+docker-compose.override.yml
